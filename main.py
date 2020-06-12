@@ -3,7 +3,7 @@ from fastapi import FastAPI
 app = FastAPI()
 
 @app.get("/")
-def root():
+async def root():
     return "Welcome to track api."
 
 if __name__ == '__main__':

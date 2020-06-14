@@ -5,9 +5,7 @@ import time
 import urls
 
 def getApi(barcode: str):
-    result = search(barcode)
-
-    return result
+    return search(barcode)
 
 def search(barcode: str):
     options = webdriver.ChromeOptions()
@@ -17,32 +15,18 @@ def search(barcode: str):
     options.add_argument('--no-sandbox')
     options.binary_location = GOOGLE_CHROME_BIN
 
+    # CHROMEDRIVER_PATH = 'D:\Python\chromedriver'
     browser = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
-    browser.get(urls.KERRY + barcode)
-    page_source = browser.page_source
+    browser.get(urls.KERRY_WEB+barcode)
 
-    soup = BeautifulSoup(page_source, 'lxml')
-
-    trackInput = soup.find("input", {"class":"iCode"})
-    trackBtn = soup.find("input", {"class":"btn", "value":"ติดตาม"})
-    btnId = trackBtn["id"]
-
-    print("ID: ", trackBtn["id"])
-
-    btn = browser.find_element_by_id(btnId)
-    btn.click()
+    button = browser.find_element_by_css_selector('input.btn')
+    button.click()
 
     time.sleep(1)
 
-    print(browser.current_url)
+    page_source = browser.page_source
 
-    source = browser.page_source
-    print(source)
-
-    soup = ""
-    soup = BeautifulSoup(source, 'lxml')
-
-    print(soup.prettify)
+    soup = BeautifulSoup(page_source, 'lxml')
 
     info = soup.find("div", {"class":"info"})
     spans = info.find_all("span")  
@@ -53,9 +37,6 @@ def search(barcode: str):
     etd = span[1].string
     sender = span[3].string
     receiver = span[4].string
-
-    for span in list(spans):    
-        print(span.string)
 
     statusCols = soup.find("div", {"class":"colStatus"})
 
@@ -94,7 +75,7 @@ def search(barcode: str):
             detail = descList[1].text.strip()
             if s: detail = detail[0:detail.index(" ")].strip()  
             province = descList[3].text.strip()
-
+            
     #         statusJson = '{ "code": "'+str(code)+'", '
     #         statusJson +=  '"date": '+('"'+dtStr+'"')+', '
     #         statusJson +=  '"detail": '+('"'+detail+'"')+', '
@@ -106,7 +87,7 @@ def search(barcode: str):
                         "province": province }
             
             statusJsonArr.append(statusJson)
-            
+
     x = {
         "info": {
             "barcode": barcode,

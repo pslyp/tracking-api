@@ -15,7 +15,8 @@ def search(barcode: str):
     options.add_argument('--no-sandbox')
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
-    browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    # CHROMEDRIVER_PATH = 'D:\Python\chromedriver'
+    browser = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
     browser.get(urls.KERRY_WEB+barcode)
 
     button = browser.find_element_by_css_selector('input.btn')

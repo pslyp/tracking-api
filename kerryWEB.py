@@ -16,7 +16,7 @@ def search(barcode: str):
     browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
     browser.get(urls.KERRY_WEB+barcode)
 
-    time.sleep(5)
+    time.sleep(10)
 
     button = browser.find_element_by_css_selector('input.btn')
     button.click()

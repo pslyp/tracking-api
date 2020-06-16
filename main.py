@@ -10,4 +10,5 @@ def root():
 
 @app.get("/api/v1.0/track/{barcode}")
 def track(barcode: str): 
-    return kerryWEB.getApi(barcode) 
+    return '{"status": 200}'
+    # return kerryWEB.getApi(barcode) 

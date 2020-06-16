@@ -25,7 +25,7 @@ def search(barcode: str):
 
     page_source = browser.page_source
 
-    soup = BeautifulSoup(page_source, 'lxml')
+    soup = BeautifulSoup(page_source, 'html.parser')
 
     info = soup.find("div", {"class":"info"})
     spans = info.find_all("span")  

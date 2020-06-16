@@ -1,12 +1,9 @@
 from bs4 import BeautifulSoup
-import json
 import os
 from selenium import webdriver
 import time
 import urls
 
-def getApi(barcode: str):
-    return search(barcode)
 
 def search(barcode: str):
     options = webdriver.ChromeOptions()
@@ -16,8 +13,10 @@ def search(barcode: str):
     options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
     # CHROMEDRIVER_PATH = 'D:\Python\chromedriver'
-    browser = webdriver.Chrome(CHROMEDRIVER_PATH, options=options)
+    browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
     browser.get(urls.KERRY_WEB+barcode)
+
+    time.sleep(5)
 
     button = browser.find_element_by_css_selector('input.btn')
     button.click()
@@ -99,3 +98,6 @@ def search(barcode: str):
     }
 
     return x
+
+def getApi(barcode: str):
+    return search(barcode)

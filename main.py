@@ -1,11 +1,11 @@
 from fastapi import FastAPI
-import kerryWEB
-import kerryAPI
-
 import os
 from selenium import webdriver
 import time
 import urls
+
+import kerryWEB
+import kerryAPI
 
 app = FastAPI()
 

@@ -4,19 +4,17 @@ from selenium import webdriver
 import time
 import urls
 
+def getApi(barcode: str):
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
-def search(barcode: str):
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--disable-dev-shm-usage')
-    options.add_argument('--no-sandbox')
-    options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-
-    # CHROMEDRIVER_PATH = 'D:\Python\chromedriver'
-    browser = webdriver.Chrome(os.environ.get("CHROMEDRIVER_PATH"), options=options)
+    browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     browser.get(urls.KERRY_WEB+barcode)
 
-    time.sleep(10)
+    time.sleep(8)
 
     button = browser.find_element_by_css_selector('input.btn')
     button.click()
@@ -27,6 +25,7 @@ def search(barcode: str):
 
     soup = BeautifulSoup(page_source, 'html.parser')
 
+    # Info
     info = soup.find("div", {"class":"info"})
     spans = info.find_all("span")  
 
@@ -37,6 +36,7 @@ def search(barcode: str):
     sender = span[3].string
     receiver = span[4].string
 
+    # Status
     statusCols = soup.find("div", {"class":"colStatus"})
 
     statusJsonArr = []
@@ -98,6 +98,3 @@ def search(barcode: str):
     }
 
     return x
-
-def getApi(barcode: str):
-    return search(barcode)

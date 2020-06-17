@@ -19,7 +19,7 @@ def getApi(barcode: str):
     button = browser.find_element_by_css_selector('input.btn')
     button.click()
 
-    time.sleep(1)
+    time.sleep(2)
 
     page_source = browser.page_source
 

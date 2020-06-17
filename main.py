@@ -4,8 +4,10 @@ from selenium import webdriver
 import time
 import urls
 
-import kerryWEB
-import kerryAPI
+import thaipost
+import kerry
+
+# EH535515481TH
 
 app = FastAPI()
 
@@ -15,5 +17,17 @@ def root():
 
 @app.get("/api/v1.0/track/{barcode}")
 def track(barcode: str):
-    res = kerryWEB.getApi(barcode)
+    res = {}
+    bc = barcode + " "
+    if bc[-3:-1] == "TH":
+        res = thaipost.api(barcode)
+    else:
+        res = kerry.api(barcode)
+
     return res
+
+@app.get("/test/{barcode}")
+def test(barcode: str):
+    bc = barcode + " "
+    print(bc[0:2])
+    print(bc[-3:-1])

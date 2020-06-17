@@ -11,6 +11,8 @@ def getApi(barcode: str):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
+    # CHROMEDRIVER_PATH = 'D:\Python\chromedriver'
+    # browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
     browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     browser.get(urls.KERRY_WEB+barcode)
 
@@ -96,5 +98,8 @@ def getApi(barcode: str):
         },
         "status": statusJsonArr
     }
+
+    browser.close()
+    browser.quit()
 
     return x

@@ -2,13 +2,13 @@ from bs4 import BeautifulSoup
 import os
 import requests
 from selenium import webdriver
+import sys
 import time
 import urls
 
-import sys
 sys.path.insert(0, 'adapters/')
 
-import default_adapter
+import template
 import kerry_adapter
 
 
@@ -118,15 +118,34 @@ def web(barcode):
     browser.close()
     browser.quit()
 
-    return default_adapter.convert(infoArr, statusArr)
-
-def restAPI(barcode):
-    res = requests.get(urls.KERRY_API + barcode + '/th')
-    x = res.json()
-    
-    kerry_adapter.convert(x)
-
-    return x
+    return template.json(infoArr, statusArr)
 
 def api(barcode):
-    return web(barcode)
+    res = requests.get(urls.KERRY_API + barcode + '/th')
+    staCode = res.status_code
+
+    if staCode == 200:
+        js = res.json()
+        err = list(js.keys())[0]  
+
+        if err == "error":
+            print("[Info]: Api error >>", js["error"]["code"]) 
+            api = web(barcode)
+        else: 
+            api = kerry_adapter.convert(js)
+
+    elif staCode == 404:
+        api = {
+            "status": 204,
+            "message": "Shipment not found!",
+            "data": None
+        }
+    
+    else:
+        api = {
+            "status": 500,
+            "message": "Internal Server Error",
+            "data": None
+        }
+
+    return api

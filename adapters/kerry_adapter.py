@@ -1,23 +1,27 @@
-import default_adapter
+import template
 
 def convert(datas: dict):
-    print(datas["Info"])
-
     info = datas["Info"]
     status = datas["Status"]
 
-    arr = []
-    arr[0] = info["consignmentNo"]
-    arr[1] = info["senderName"]
-    arr[2] = info["recipientName"]
-    arr[3] = info["lastStatusDate"]
+    arr = [ 
+        info["consignmentNo"], 
+        info["senderName"], 
+        info["recipientName"], 
+        info["lastStatusDate"] 
+    ]
 
     arr2 = []
-    arr2[0] = status[""]
-    arr2[1] = status[""]
-    arr2[2] = status[""]
-    arr2[3] = status[""]
-
     arr3 = []
+    staLen = len(status)
+    for s in range(staLen):
+        arr2 = [ 
+            status[s]["statusCode"], 
+            status[s]["statusDate"],
+            status[s]["detail"], 
+            status[s]["province"] 
+        ]
 
-    return default_adapter.convert(arr, arr3)
+        arr3.append(arr2)
+
+    return template.json(arr, arr3)

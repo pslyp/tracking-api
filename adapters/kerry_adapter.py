@@ -10,10 +10,11 @@ def convert(datas: dict):
         info["recipientName"], 
         info["lastStatusDate"] 
     ]
-
+    
     arr2 = []
     arr3 = []
     staLen = len(status)
+
     for s in range(staLen):
         arr2 = [ 
             status[s]["statusCode"], 

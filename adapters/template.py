@@ -1,9 +1,6 @@
-def json(info: [], status: [[]]):
-    
+def json(info: [], status: [[]]):    
     statusDict = {}
     statusDictArr = []
-
-    print("Status >>", status)
 
     for i in range(len(status)):
         statusDict = {

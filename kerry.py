@@ -9,6 +9,7 @@ import urls
 sys.path.insert(0, 'adapters/')
 
 import template
+import response
 import kerry_adapter
 
 
@@ -129,23 +130,15 @@ def api(barcode):
         err = list(js.keys())[0]  
 
         if err == "error":
-            print("[Info]: Api error >>", js["error"]["code"]) 
+            print("[Kerry]: Api error >>", js["error"]["code"]) 
             api = web(barcode)
         else: 
             api = kerry_adapter.convert(js)
 
     elif staCode == 404:
-        api = {
-            "status": 204,
-            "message": "Shipment not found!",
-            "data": None
-        }
+        api = response.success(204, "Shipment not found!", None)
     
     else:
-        api = {
-            "status": 500,
-            "message": "Internal Server Error",
-            "data": None
-        }
+        api = response.error(500, "Internal Server Error")
 
     return api

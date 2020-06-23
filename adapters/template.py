@@ -1,3 +1,5 @@
+import response
+
 def json(info: [], status: [[]]):    
     statusDict = {}
     statusDictArr = []
@@ -22,8 +24,4 @@ def json(info: [], status: [[]]):
         "status": statusDictArr    
     }
 
-    return {
-        "status": 200,
-        "message": "Success",
-        "data": x
-    }
+    return response.success(200, "Success", x)

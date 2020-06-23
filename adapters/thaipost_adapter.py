@@ -10,11 +10,12 @@ def convert(datas: dict):
 
     staLen = len(status)
     for i in range(staLen):
+        index = (staLen-1)-i
         arr2.append([
             "",
-            status[i]["timestamp"],
-            status[i]["description"],
-            status[i]["location"]
+            status[index]["timestamp"],
+            status[index]["description"],
+            status[index]["location"]
         ])
 
     return template.json(arr, arr2)

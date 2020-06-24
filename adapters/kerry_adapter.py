@@ -20,8 +20,7 @@ def convert(datas: dict):
     arr = [ 
         info["consignmentNo"], 
         info["senderName"], 
-        info["recipientName"], 
-        info["lastStatusDate"] 
+        info["recipientName"]       
     ]
     
     arr2 = []

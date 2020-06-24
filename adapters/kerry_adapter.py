@@ -32,7 +32,7 @@ def convert(datas: dict):
             getCode(status[s]["statusCode"]), 
             status[s]["statusDate"],
             status[s]["detail"], 
-            status[s]["province"] 
+            (status[s]["province"]).split("-")[1].strip() 
         ]  
 
         arr3.append(arr2)

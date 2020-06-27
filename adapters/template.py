@@ -17,8 +17,9 @@ def json(info: [], status: [[]]):
     x = { 
         "info": {
             "no": info[0],
-            "sender": info[1],
-            "receiver": info[2]           
+            "company": info[1],
+            "sender": info[2],
+            "receiver": info[3]           
         },
         "status": statusDictArr    
     }

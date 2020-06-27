@@ -25,7 +25,12 @@ def convert(datas: dict):
     data = datas['data']
     status = data['data']
 
-    arr = [ data['barcode'], "", "" ]
+    arr = [ 
+        data['barcode'],
+        "Thailand Post", 
+        "",
+        "" 
+    ]
 
     arr2 = []
 

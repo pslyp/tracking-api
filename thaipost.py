@@ -11,8 +11,9 @@ urllib3.disable_warnings()
 
 sys.path.insert(0, 'adapters/')
 
-import template
 import thaipost_adapter
+import json_template
+import response_template
 
 
 def web(barcode):
@@ -55,19 +56,14 @@ def api(barcode):
 
         if js["status"] == 1:
             api = thaipost_adapter.convert(js)
-            
-        elif staCode == 0:
-            api = {
-                "status": staCode,
-                "message": "รูปแบบข้อมูลที่ไม่ถูกต้อง",
-                "data": None
-            }
+
+    elif staCode == 500:
+        js = res.json()
+
+        if js["status"] == 0 and js["message"] == "Empty data.":
+            api = response_template.success(204, "Shipment not found!", None)
 
     else:        
-        api = {
-            "status": 500,
-            "message": "Internal Server Error",
-            "data": None
-        }
+        api = response_template.error(500, "Internal Server Error")
 
     return api

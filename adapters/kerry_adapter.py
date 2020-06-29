@@ -1,4 +1,4 @@
-import template
+import json_template
 
 def getCode(s: str):
     code = {
@@ -38,4 +38,4 @@ def convert(datas: dict):
 
         arr3.append(arr2)
 
-    return template.json(arr, arr3)
+    return json_template.json(arr, arr3)

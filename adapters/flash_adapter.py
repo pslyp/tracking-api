@@ -1,5 +1,5 @@
 from datetime import datetime
-import template
+import json_template
 
 def getCode(s :str):
 
@@ -79,4 +79,4 @@ def convert(datas: dict):
             getProvince(status[i]['message']) 
         ])
 
-    return template.json(arr, arr2)
+    return json_template.json(arr, arr2)

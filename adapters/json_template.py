@@ -1,6 +1,6 @@
-import response
+import response_template
 
-def json(info: [], status: [[]]):    
+def json(info: [], status: [[]]):
     statusDict = {}
     statusDictArr = []
 
@@ -19,9 +19,9 @@ def json(info: [], status: [[]]):
             "no": info[0],
             "company": info[1],
             "sender": info[2],
-            "receiver": info[3]           
+            "receiver": info[3]
         },
-        "status": statusDictArr    
+        "status": statusDictArr
     }
 
-    return response.success(200, "Success", x)
+    return response_template.success(200, "Success", x)

@@ -1,4 +1,4 @@
-import template
+import json_template
 
 def getCode(s: str):
     code = {
@@ -44,4 +44,4 @@ def convert(datas: dict):
             status[index]['location']
         ])
 
-    return template.json(arr, arr2)
+    return json_template.json(arr, arr2)

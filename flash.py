@@ -8,8 +8,9 @@ import urls
 
 sys.path.insert(0, 'adapters/')
 
-import template
 import flash_adapter
+import json_template
+import response_template
 
 
 def web(barcode):
@@ -24,7 +25,7 @@ def web(barcode):
     # browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     # browser.get(urls.FLASH_API + barcode)
 
-    return { "status": 200, "message": "Not available", "data": None }
+    return response_template.success(200, "Flash Web", None)
 
 def api(barcode):
     res = requests.get(urls.FLASH_API + barcode)

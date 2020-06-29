@@ -48,5 +48,6 @@ def api(barcode):
         }
     else:
         print("Flash Code:", staCode)
+        api = response_template.error(500, "Internal Server Error")
 
     return api

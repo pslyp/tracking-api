@@ -32,6 +32,8 @@ def track(barcode: str):
     elif company == "kerry":
         print("Kerry")
         return kerry.api(barcode)
+    elif company == "test":
+        return package_code.apiTest(barcode)
     else:
         return response_template.success(422, "Unprocessable Entit", None)
 

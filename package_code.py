@@ -23,18 +23,22 @@ def company(code: str):
 
 def apiTest(no: str):
     x = {
-        "info": {
-            "no": no,
-            "company": "Nonny",
-            "sender": "Nonny",
-            "receiver": "Nonny"
-        },
-        "status": [{
-            "code": "301",
-            "date": "01/07/2563 08:00",
-            "detail": "กำลังจัดส่ง",
-            "province": "กรุงเทพมหานคร"
-        }]
+        "status": 200,
+        "message": "success",
+        "data": {
+            "info": {
+                "no": no,
+                "company": "Nonny",
+                "sender": "Nonny",
+                "receiver": "Nonny"
+            },
+            "status": [{
+                "code": "301",
+                "date": "01/07/2563 08:00",
+                "detail": "กำลังจัดส่ง",
+                "province": "กรุงเทพมหานคร"
+            }]
+        }
     }
 
     return x

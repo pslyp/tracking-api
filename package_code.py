@@ -28,14 +28,20 @@ def apiTest(no: str):
         "data": {
             "info": {
                 "no": no,
-                "company": "Nonny",
-                "sender": "Nonny",
-                "receiver": "Nonny"
+                "company": "Non Expresss",
+                "sender": "Non 1",
+                "receiver": "Non 2"
             },
             "status": [{
+                "code": "501",
+                "date": "01/07/2563 13:00",
+                "detail": "นำจ่ายสำเร็จ",
+                "province": "กรุงเทพมหานคร"
+            }, 
+            {
                 "code": "301",
                 "date": "01/07/2563 08:00",
-                "detail": "กำลังจัดส่ง",
+                "detail": "อยู่ระหว่างการนำจ่าย",
                 "province": "กรุงเทพมหานคร"
             }]
         }

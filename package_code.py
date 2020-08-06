@@ -16,7 +16,7 @@ def company(code: str):
         return "flash"
     elif k(firstThreePosition):
         return "kerry"
-    elif firstTwoPosition == "TS" and lastTwoPosition == "TS":
+    elif firstTwoPosition == "TT":
         return "test"
     else:
         return "not found"
